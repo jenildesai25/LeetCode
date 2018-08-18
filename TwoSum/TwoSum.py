@@ -15,7 +15,11 @@ class TwoSum:
                     return i, j
 
     def two_sum_optimize(self):
-        pass
+        container = dict()
+        for index, value in enumerate(self.nums):
+            if self.target - value in container:
+                return container[self.target - value], index
+            container[value] = index
 
 
 if __name__ == '__main__':
@@ -23,3 +27,4 @@ if __name__ == '__main__':
     target = 9
     two_sum_obj = TwoSum(nums, target)
     print(two_sum_obj.two_sum_naive_approach())
+    print(two_sum_obj.two_sum_optimize())
