@@ -12,26 +12,18 @@ class ValidParentheses:
             print(e)
 
     def valid_parentheses(self):
-        index = 0
-        container = ""
+        container = []
         if len(self.input) % 2 == 1 or len(self.input) == 0:
             return False
-        if self.input[0] not in self.container:
-            return False
-        while index < len(self.input):
-            if self.container[self.input[index]] == self.input[index + 1]:
-                container = container + self.input[index]
-                container = container + self.input[index + 1]
-                index = index + 2
-            else:
+        for parentheses in self.input:
+            if parentheses in self.container:
+                container.append(parentheses)
+            elif len(container) == 0 or self.container[container.pop()] != parentheses:
                 return False
-        if container == self.input:
-            return True
-        else:
-            return False
+        return len(container) == 0
 
 
 if __name__ == '__main__':
-    input = "{[]}"
+    input = "()"
     valid_parentheses_obj = ValidParentheses(input)
     print(valid_parentheses_obj.valid_parentheses())
